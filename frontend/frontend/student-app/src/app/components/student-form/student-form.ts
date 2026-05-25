@@ -1,12 +1,12 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Student } from '../../../models/student.model';
+import { Student } from '../../models/student.model';
 
 @Component({
   selector: 'app-student-form',
   standalone: true,
-  imports: [CommonModule, FormsModulfe],
+  imports: [CommonModule, FormsModule],
   templateUrl: './student-form.html',
   styleUrls: ['./student-form.css']
 })

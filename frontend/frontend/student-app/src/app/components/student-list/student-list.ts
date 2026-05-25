@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Student } from '../../../models/student.model';
+import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
 import { StudentCardComponent } from '../student-card/student-card';
 
