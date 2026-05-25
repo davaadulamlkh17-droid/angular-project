@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Student } from '../../../models/student.model';
+import { Student } from '../../models/student.model';
 
 @Component({
   selector: 'app-student-card',
