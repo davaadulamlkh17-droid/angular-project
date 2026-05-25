@@ -1,0 +1,12 @@
+<div class="student-card">
+  <h3>{{ student.name }}</h3>
+  <p class="email">{{ student.email }}</p>
+  <p class="age">Age: {{ student.age }}</p>
+  <p class="grade" [class]="getGradeClass()">
+    Grade: {{ student.grade }}
+  </p>
+  <div class="actions">
+    <button (click)="onEdit()">Edit</button>
+    <button (click)="onDelete()" class="btn-danger">Delete</button>
+  </div>
+</div>
