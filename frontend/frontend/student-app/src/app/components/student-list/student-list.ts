@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Student } from '../../models/student.model';
+import { Student } from '../../../models/student.model';
 import { StudentService } from '../../services/student.service';
 import { StudentCardComponent } from '../student-card/student-card';
 
@@ -54,5 +54,44 @@ export class StudentListComponent implements OnInit {
 
   get studentCount(): number {
     return this.students.length;
+  }
+
+  showForm = false;
+  editingStudent: Student | null = null;
+
+  openAddForm(): void {
+    this.editingStudent = null;
+    this.showForm = true;
+  }
+
+  openEditForm(student: Student): void {
+    this.editingStudent = { ...student };
+    this.showForm = true;
+  }
+
+  closeForm(): void {
+    this.showForm = false;
+    this.editingStudent = null;
+  }
+  saveStudent(student: Student): void {
+    if (this.editingStudent) {
+      // Update
+      this.studentService.updateStudent(student.id, student).subscribe({
+        next: () => {
+          this.loadStudents();
+          this.closeForm();
+        },
+        error: (err) => console.error('Update error:', err)
+      });
+    } else {
+      // Create
+      this.studentService.addStudent(student).subscribe({
+        next: () => {
+          this.loadStudents();
+          this.closeForm();
+        },
+        error: (err) => console.error('Create error:', err)
+      });
+    }
   }
 }
