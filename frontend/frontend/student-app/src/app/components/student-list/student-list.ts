@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
@@ -17,7 +17,7 @@ export class StudentListComponent implements OnInit {
   loading = true;
   errorMessage = '';
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loadStudents();
@@ -31,6 +31,7 @@ export class StudentListComponent implements OnInit {
       next: (data) => {
         this.students = data;
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.errorMessage = 'Backend-тэй холбогдоход алдаа: ' + err.message;
