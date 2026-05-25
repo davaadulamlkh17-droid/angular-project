@@ -1,0 +1,34 @@
+<div class="student-list">
+  <h2>Student List ({{ studentCount }} students)</h2>
+
+  @if (loading) {
+    <p>Ачааллаж байна...</p>
+  }
+
+  @if (errorMessage && !loading) {
+    <div class="error">
+      <p>{{ errorMessage }}</p>
+      <ul>
+        <li>Spring Boot ажиллаж байна уу? (localhost:8080)</li>
+        <li>CORS тохиргоо зөв үү?</li>
+        <li>URL зөв бичсэн үү?</li>
+      </ul>
+    </div>
+  }
+
+  @if (!loading && !errorMessage) {
+    <div class="students-grid">
+      @for (student of students; track student.id) {
+        <app-student-card
+          [student]="student"
+          (delete)="handleDelete($event)"
+          (edit)="handleEdit($event)">
+        </app-student-card>
+      }
+    </div>
+
+    @if (students.length === 0) {
+      <p class="no-students">No students found.</p>
+    }
+  }
+</div>
